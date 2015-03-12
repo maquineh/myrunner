@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ParedeManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlataformaManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Runner.cs" Line="5" Column="42" />
-      <File FileName="Assets\Scripts\ParedeManager.cs" Line="48" Column="28" />
+      <File FileName="Assets\Scripts\Runner.cs" Line="21" Column="18" />
+      <File FileName="Assets\Scripts\ParedeManager.cs" Line="40" Column="40" />
+      <File FileName="Assets\Scripts\PlataformaManager.cs" Line="60" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
