@@ -10,12 +10,17 @@ public class Runner : MonoBehaviour {
     private bool tocouPlataforma;
 
 	void Update () {
-		if(tocouPlataforma && Input.GetButtonDown("Jump")){
+		if(tocouPlataforma && 
+            (Input.GetButtonDown("Jump") || Input.touchCount > 0)){
 			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
 			tocouPlataforma = false;
 		}
 		transform.Translate (10f * Time.deltaTime, 0f, 0f);
 		distanciaPercorrida = transform.localPosition.x;
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
 	}
 
 	void FixedUpdate () {
