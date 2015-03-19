@@ -2,20 +2,13 @@
 using System.Collections;
 
 public class Runner : MonoBehaviour {
-	public static float distanciaPercorrida;
-	// Use this for initialization
 
-	public float aceleracao;
-	
-	private bool tocouPlataforma;
-
+    public static float distanciaPercorrida;
+    public float aceleracao;
 	public Vector3 velocidadePulo;
 
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
+    private bool tocouPlataforma;
+
 	void Update () {
 		if(tocouPlataforma && Input.GetButtonDown("Jump")){
 			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);

@@ -6,15 +6,13 @@ public class PlataformaManager : MonoBehaviour {
 	public Transform prefab;
 	public int numeroDeParedes;
 	public Vector3 posicaoInicial;
-	public Vector3 minSize, maxSize, minGap, maxGap;
+    public Vector3 proximaPosicao;
+    public Vector3 minSize, maxSize, minGap, maxGap;
 	public float minY, maxY;
 	public float repetidorOffset;
-	
+    	
 	private Queue<Transform> plataformas;
 	
-	public Vector3 proximaPosicao;
-	
-	// Use this for initialization
 	void Start () {
 		plataformas = new Queue<Transform>(numeroDeParedes);
 		for (int i = 0; i < numeroDeParedes; i++) {
@@ -26,7 +24,6 @@ public class PlataformaManager : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (plataformas.Peek().localPosition.x + repetidorOffset < Runner.distanciaPercorrida) {
 			Renovar();
