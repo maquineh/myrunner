@@ -140,7 +140,7 @@ MonoBehaviour:
   maxGap: {x: 10, y: 3, z: 0}
   minY: -5
   maxY: 10
-  repetidorOffset: 20
+  repetidorOffset: 50
 --- !u!4 &517204518
 Transform:
   m_ObjectHideFlags: 0
@@ -282,6 +282,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1590486359}
+  m_RootOrder: 1
+--- !u!1 &1069079565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1069079566}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1069079566
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069079565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.600000024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637464724}
   m_RootOrder: 1
 --- !u!1 &1244073761
 GameObject:
@@ -491,6 +518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 851763310}
+  - {fileID: 1069079566}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!114 &1637464725
@@ -506,6 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aceleracao: 5
   velocidadePulo: {x: 1, y: 7, z: 0}
+  temPuloDuplo: 0
 --- !u!54 &1637464726
 Rigidbody:
   m_ObjectHideFlags: 0
