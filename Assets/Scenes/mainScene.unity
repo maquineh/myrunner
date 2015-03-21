@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &272458871
 GameObject:
@@ -102,7 +101,7 @@ Transform:
   m_Children:
   - {fileID: 517204518}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &517204516
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,52 +236,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1637464724}
   m_RootOrder: 0
---- !u!1 &894471211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 894471213}
-  - 114: {fileID: 894471212}
-  m_Layer: 0
-  m_Name: ParedeLongeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &894471212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 894471211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77f224b6a9dad54393005e134005fa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 400000, guid: 2f1be76b8dbc797458c04a4a1bde38b7, type: 2}
-  numeroDeParedes: 10
-  posicaoInicial: {x: -100, y: -100, z: 100}
-  minSize: {x: 10, y: 50, z: 10}
-  maxSize: {x: 30, y: 100, z: 10}
-  repetidorOffset: 75
-  proximaPosicao: {x: 0, y: 0, z: 0}
---- !u!4 &894471213
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 894471211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1590486359}
-  m_RootOrder: 1
 --- !u!1 &1069079565
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,81 +326,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1 &1435740423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1435740425}
-  - 114: {fileID: 1435740424}
-  m_Layer: 0
-  m_Name: ParedePertoManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1435740424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1435740423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77f224b6a9dad54393005e134005fa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 400000, guid: 95348fe113488cc4293bbd6099feddfb, type: 2}
-  numeroDeParedes: 10
-  posicaoInicial: {x: -60, y: -60, z: 50}
-  minSize: {x: 10, y: 20, z: 10}
-  maxSize: {x: 30, y: 60, z: 10}
-  repetidorOffset: 60
-  proximaPosicao: {x: 0, y: 0, z: 0}
---- !u!4 &1435740425
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1435740423}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1590486359}
-  m_RootOrder: 0
---- !u!1 &1590486358
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1590486359}
-  m_Layer: 0
-  m_Name: Paredes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1590486359
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1590486358}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 15, z: -40}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1435740425}
-  - {fileID: 894471213}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
 --- !u!1 &1637464720
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,4 +468,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
