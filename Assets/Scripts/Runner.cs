@@ -7,6 +7,7 @@ public class Runner : MonoBehaviour {
     public float aceleracao;
 	public Vector3 velocidadePulo;
 	public bool temPuloDuplo = false;
+    public bool caindo = false;
     
     private Transform groundCheck;
     private bool tocouPlataforma;
@@ -28,7 +29,6 @@ public class Runner : MonoBehaviour {
 			if(Input.GetButtonDown("Jump") || Input.touchCount > 0){
 				rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
 				temPuloDuplo = true;
-				tocouPlataforma = false;
 			}
 		}
 
@@ -43,8 +43,10 @@ public class Runner : MonoBehaviour {
                                            1 << LayerMask.NameToLayer("Ground"));
 		if(tocouPlataforma){
 			rigidbody.AddForce(aceleracao, 0f, 0f, ForceMode.Acceleration);
-            Debug.Log("Acelerando");
 		}
-        else Debug.Log("não acelerando");
+        else if (!tocouPlataforma && rigidbody.velocity.x <= 0.0f && !caindo) {
+            rigidbody.velocity = Vector3.zero;
+            caindo = true;
+        }
 	}
 }

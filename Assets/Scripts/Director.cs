@@ -12,17 +12,18 @@ public class Director : MonoBehaviour {
     }
 
 	void Update () {
-        if (runner.position.y <= -20.0f) {
+        if (runner.position.y <= -5.0f) {
             Resetar();
         }
 	}
 
     void FixedUpdate() {
-        if(runner.position.y >= 0) score++;
+        if (runner.position.y >= 0) score += (int)runner.rigidbody.velocity.x;
     }
 
     void Resetar() {
         runner.position = new Vector3(runner.position.x + 10.0f, 15, runner.position.z);
+        runner.GetComponent<Runner>().caindo = false;
         score = 0;
     }
 

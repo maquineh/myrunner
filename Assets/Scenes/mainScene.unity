@@ -305,7 +305,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1069079565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.600000024, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1637464724}
@@ -535,6 +535,7 @@ MonoBehaviour:
   aceleracao: 5
   velocidadePulo: {x: 1, y: 7, z: 0}
   temPuloDuplo: 0
+  caindo: 0
 --- !u!54 &1637464726
 Rigidbody:
   m_ObjectHideFlags: 0
