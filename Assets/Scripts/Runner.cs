@@ -17,20 +17,11 @@ public class Runner : MonoBehaviour {
     }
 
 	void Update () {
-		if(!tocouPlataforma && 
-            (Input.GetButtonDown("Jump") || Input.touchCount > 0) && temPuloDuplo){
-			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
-			temPuloDuplo = false;
-		}
-		transform.Translate (10f * Time.deltaTime, 0f, 0f);
 		distanciaPercorrida = transform.localPosition.x;
 
-		if (tocouPlataforma) {
-			if(Input.GetButtonDown("Jump") || Input.touchCount > 0){
-				rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
-				temPuloDuplo = true;
-			}
-		}
+        if (!tocouPlataforma && rigidbody.position.x <= 0) {
+            rigidbody.velocity = Vector3.zero;
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
@@ -38,15 +29,20 @@ public class Runner : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-        tocouPlataforma = Physics.Linecast(transform.position, 
+        tocouPlataforma = Physics.Linecast(transform.position,
                                            groundCheck.position,
                                            1 << LayerMask.NameToLayer("Ground"));
-		if(tocouPlataforma){
-			rigidbody.AddForce(aceleracao, 0f, 0f, ForceMode.Acceleration);
-		}
-        else if (!tocouPlataforma && rigidbody.velocity.x <= 0.0f && !caindo) {
-            rigidbody.velocity = Vector3.zero;
-            caindo = true;
+        if (tocouPlataforma) {
+            rigidbody.AddForce(aceleracao, 0f, 0f, ForceMode.Acceleration);
+            temPuloDuplo = false;
+            if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
+                rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
+                temPuloDuplo = true;
+            }
         }
+        else if ((Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && temPuloDuplo) {
+			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
+			temPuloDuplo = false;
+		}
 	}
 }
