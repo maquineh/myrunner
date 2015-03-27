@@ -7,7 +7,6 @@ public class Runner : MonoBehaviour {
     public float aceleracao;
 	public Vector3 velocidadePulo;
 	public bool temPuloDuplo = false;
-    public bool caindo = false;
     
     private Transform groundCheck;
     private bool tocouPlataforma;

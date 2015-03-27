@@ -20,7 +20,7 @@ public class PlataformaManager : MonoBehaviour {
 		}
 		proximaPosicao = posicaoInicial;
 		for (int i = 0; i<numeroDeParedes; i++) {
-			Renovar ();
+			Renovar();
 		}
 	}
 	
