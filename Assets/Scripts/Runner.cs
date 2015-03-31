@@ -7,6 +7,8 @@ public class Runner : MonoBehaviour {
     public float aceleracao;
 	public Vector3 velocidadePulo;
 	public bool temPuloDuplo = false;
+
+	private GameObject runner;
     
     private Transform groundCheck;
     private bool tocouPlataforma;
@@ -43,5 +45,22 @@ public class Runner : MonoBehaviour {
 			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
 			temPuloDuplo = false;
 		}
+
+		runner = GameObject.FindGameObjectWithTag("Runner");
+		Vector3 direction = (runner.transform.position - transform.position).normalized;
+		Debug.Log (direction);
+		Ray ray = new Ray (transform.position, direction);
+		RaycastHit hit;
+		
+		Debug.DrawRay (transform.position, direction, Color.red);
+		
+		if(Physics.Raycast(ray, out hit, 3f)) {
+			gameObject.renderer.material.color = Color.blue;
+			//Debug.Log("OK");
+		}
+		else {
+			gameObject.renderer.material.color = Color.white;
+		}
+
 	}
 }
