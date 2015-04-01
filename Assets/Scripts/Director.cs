@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Director : MonoBehaviour {
 
-    public Transform runner;
+    public Transform runner, chaser;
 
     private int score;
 
@@ -13,7 +13,11 @@ public class Director : MonoBehaviour {
 
 	void Update () {
         if (runner.position.y <= -8.0f) {
-            Resetar();
+            ResetarRunner();
+        }
+
+        if (chaser.position.y <= -8.0f) {
+            ResetarChaser();
         }
 	}
 
@@ -22,9 +26,13 @@ public class Director : MonoBehaviour {
         if (score < 0) score = 0;
     }
 
-    void Resetar() {
+    void ResetarRunner() {
         runner.position = new Vector3(runner.position.x + 10.0f, 15, runner.position.z);
         score = 0;
+    }
+
+    void ResetarChaser() {
+        chaser.position = new Vector3(chaser.position.x + 10.0f, 15, chaser.position.z);
     }
 
     void OnGUI() {
