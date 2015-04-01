@@ -13,6 +13,8 @@ public class Runner : MonoBehaviour {
     private Transform groundCheck;
     private bool tocouPlataforma;
 
+	private RaycastHit hitInfo;
+
     void Awake() {
         groundCheck = transform.FindChild("GroundCheck");
     }
@@ -45,22 +47,19 @@ public class Runner : MonoBehaviour {
 			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
 			temPuloDuplo = false;
 		}
+		Debug.DrawRay (transform.position, transform.right);
+		Vector3 right = transform.right;
+		float distancia =100;
+		if (Physics.Raycast (transform.position, right, out hitInfo, distancia) == true) {
+			Debug.Log ("Colidiu.....");
+			if(hitInfo.distance == distancia/2){
+				rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
+			}
+			
+			//Debug.Log("Acertou Algo....");
 
-		runner = GameObject.FindGameObjectWithTag("Runner");
-		Vector3 direction = (runner.transform.position - transform.position).normalized;
-		Debug.Log (direction);
-		Ray ray = new Ray (transform.position, direction);
-		RaycastHit hit;
-		
-		Debug.DrawRay (transform.position, direction, Color.red);
-		
-		if(Physics.Raycast(ray, out hit, 3f)) {
-			gameObject.renderer.material.color = Color.blue;
-			//Debug.Log("OK");
+		} else {
+			Debug.Log ("Nao Colidiu.....");
 		}
-		else {
-			gameObject.renderer.material.color = Color.white;
-		}
-
 	}
 }

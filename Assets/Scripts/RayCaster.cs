@@ -12,13 +12,14 @@ public class RayCaster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		runner = GameObject.FindGameObjectWithTag("Runner");
-		Vector3 forward = runner.transform.TransformDirection (Vector3.forward);
+		//runner = GameObject.FindGameObjectWithTag("Runner");
+		//Vector3 forward = runner.transform.TransformDirection (Vector3.forward);
 
-		Debug.DrawRay (runner.transform.position, forward * 10, Color.red);
+		//Debug.DrawRay (runner.transform.position, transform.forward * 10, Color.red);
 
-		if (Physics.Raycast (runner.transform.position, forward, 15)) {
-			Debug.Log("Acertou Algo....");
+		if (Physics.Raycast (transform.position, transform.forward, 200)==true) {
+			//Debug.Log("Acertou Algo....");
+			print("Colidiu.....");
 		}
 
 	}
