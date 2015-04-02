@@ -3,10 +3,16 @@ using System.Collections;
 
 public class Chaser : Runner {
 
-    private bool pular = false;
-    private float distancia = 20;
+    private float distanciaHoriz = 20;
+    private float distanciaDiag = 5;
     private RaycastHit hitInfo;
+    private Transform raycastOrigin;
 
+    public void Awake() {
+        groundCheck = transform.FindChild("GroundCheck");
+        raycastOrigin = transform.FindChild("RaycastOrigin");
+    }
+    
     public void Start() {
 	
 	}
@@ -15,41 +21,30 @@ public class Chaser : Runner {
         if (!tocouPlataforma && rigidbody.position.x <= 0) {
             rigidbody.velocity = Vector3.zero;
         }
-    }
-
-	public override void FixedUpdate () {
-        tocouPlataforma = Physics.Linecast(transform.position,
-                                           groundCheck.position,
-                                           1 << LayerMask.NameToLayer("Ground"));
-        
         Vector3 right = transform.right;
-        Vector3 diagonal = Quaternion.AngleAxis(-45, Vector3.forward) * right;
-        Debug.DrawRay(transform.position, right * distancia);
-        Debug.DrawRay(transform.position, diagonal * distancia, Color.cyan);
+        Vector3 diagonal = Quaternion.AngleAxis(-45, Vector3.forward) * raycastOrigin.transform.right;
+        Debug.DrawRay(transform.position, right * distanciaHoriz);
+        Debug.DrawRay(raycastOrigin.transform.position, diagonal * distanciaDiag, Color.cyan);
 
-        pular = false;
-        if (Physics.Raycast(transform.position, 
-                            right, 
-                            out hitInfo, 
-                            distancia, 
+        if (Physics.Raycast(transform.position,
+                            right,
+                            out hitInfo,
+                            distanciaHoriz,
                             1 << LayerMask.NameToLayer("Ground"))) {
-            if (hitInfo.distance <= distancia / 2) {
+            if (hitInfo.distance <= distanciaHoriz / 2) {
                 pular = true;
             }
         }
 
-        if (tocouPlataforma) {
-            rigidbody.AddForce(aceleracao, 0f, 0f, ForceMode.Acceleration);
-            temPuloDuplo = false;
-            if (pular) {
-                rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
-                temPuloDuplo = true;
-                pular = false;
+        if (!Physics.Raycast(transform.position,
+                           diagonal,
+                           out hitInfo,
+                           distanciaDiag,
+                           1 << LayerMask.NameToLayer("Ground"))) {
+            if (hitInfo.distance <= distanciaDiag) {
+                pular = true;
             }
         }
-        else if (pular && temPuloDuplo) {
-			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
-			temPuloDuplo = false;
-		}
-	}
+
+    }
 }

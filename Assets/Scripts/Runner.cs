@@ -11,6 +11,7 @@ public class Runner : MonoBehaviour {
 	protected GameObject runner;
     protected Transform groundCheck;
     protected bool tocouPlataforma;
+    protected bool pular;
 
     void Awake() {
         groundCheck = transform.FindChild("GroundCheck");
@@ -23,12 +24,16 @@ public class Runner : MonoBehaviour {
             rigidbody.velocity = Vector3.zero;
         }
 
+        if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
+            pular = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
 	}
 
-	public virtual void FixedUpdate () {
+	public void FixedUpdate () {
         tocouPlataforma = Physics.Linecast(transform.position,
                                            groundCheck.position,
                                            1 << LayerMask.NameToLayer("Ground"));
@@ -36,14 +41,16 @@ public class Runner : MonoBehaviour {
         if (tocouPlataforma) {
             rigidbody.AddForce(aceleracao, 0f, 0f, ForceMode.Acceleration);
             temPuloDuplo = false;
-            if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) {
+            if (pular) {
                 rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
                 temPuloDuplo = true;
+                pular = false;
             }
         }
-        else if ((Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && temPuloDuplo) {
+        else if (pular && temPuloDuplo) {
 			rigidbody.AddForce(velocidadePulo, ForceMode.VelocityChange);
 			temPuloDuplo = false;
+            pular = false;
 		}
 	}
 }
