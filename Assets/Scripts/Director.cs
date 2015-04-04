@@ -3,28 +3,41 @@ using System.Collections;
 
 public class Director : MonoBehaviour {
 
-    public Transform runner, chaser;
+    public Transform runner, chaser, plataformas;
+
+	public GUIText gameOverText;
+
+	public Canvas dialog;
+
+	private Runner runnerScript;
 
     private int score, tries;
 
     void Start() {
         score = 0;
-		tries = 3;
+		tries = 1;
+		//StartGame ();
 		GameManagersEvent.runGameStart();
+
+		gameOverText.enabled = false;
+		enabled = false;
+		dialog.enabled = false;
+
+		runnerScript = runner.GetComponent<Runner> ();
     }
 
 	void Update () {
-        if (runner.position.y <= -8.0f) {
+        if (runner.transform.position.y <= -8.0f) {
 			tries--;
             ResetarRunner();
 
 			if(tries<1){
-				GameManagersEvent.runGameOver();
+				gameOver();
 			}
 
         }
 
-        if (chaser.position.y <= -4.0f) {
+		if (chaser.transform.position.y <= -4.0f) {
             ResetarChaser();
         }
 	}
@@ -35,11 +48,11 @@ public class Director : MonoBehaviour {
     }
 
     void ResetarRunner() {
-        runner.position = new Vector3(runner.position.x + 10.0f, 15, runner.position.z);
+		runner.transform.position = new Vector3(runner.transform.position.x + 10.0f, 15, runner.transform.position.z);
     }
 
     void ResetarChaser() {
-        chaser.position = new Vector3(chaser.position.x + 10.0f, 15, chaser.position.z);
+		chaser.transform.position = new Vector3(chaser.transform.position.x + 10.0f, 15, chaser.transform.position.z);
     }
 
     void OnGUI() {
@@ -49,5 +62,19 @@ public class Director : MonoBehaviour {
 
 	public void setScore(int resetScore){
 		this.score = resetScore;
+	}
+
+	public void gameOver(){
+		gameOverText.enabled = true;
+		dialog.enabled = true;
+
+		runner.renderer.enabled = false;
+		runner.rigidbody.isKinematic = true;
+
+		chaser.renderer.enabled = false;
+		chaser.rigidbody.isKinematic = true;
+
+		runnerScript.velocidadePulo = Vector3.zero;
+		runnerScript.aceleracao = 0;
 	}
 }

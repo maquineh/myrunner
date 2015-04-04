@@ -13,6 +13,10 @@ public class Runner : MonoBehaviour {
     protected bool tocouPlataforma;
     protected bool pular;
 
+	public void Start(){
+
+	}
+
     void Awake() {
         groundCheck = transform.FindChild("GroundCheck");
     }

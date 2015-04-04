@@ -57,4 +57,8 @@ public class PlataformaManager : MonoBehaviour {
 			proximaPosicao.y = maxY - maxGap.y;
 		}
 	}
+
+	public void setPlataformas(int qtdePlataformas){
+
+	}
 }

@@ -12,10 +12,6 @@ public class Chaser : Runner {
         groundCheck = transform.FindChild("GroundCheck");
         raycastOrigin = transform.FindChild("RaycastOrigin");
     }
-    
-    public void Start() {
-	
-	}
 
     public override void Update() {
         if (!tocouPlataforma && rigidbody.position.x <= 0) {
