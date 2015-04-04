@@ -12,9 +12,10 @@ public class Runner : MonoBehaviour {
     protected Transform groundCheck;
     protected bool tocouPlataforma;
     protected bool pular;
+    protected Vector3 posicaoInicial;
 
 	public void Start(){
-
+        posicaoInicial = transform.position;
 	}
 
     void Awake() {
@@ -57,4 +58,8 @@ public class Runner : MonoBehaviour {
             pular = false;
 		}
 	}
+
+    public void reset() {
+        transform.position = posicaoInicial;
+    }
 }

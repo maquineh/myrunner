@@ -41,8 +41,5 @@ public class Chaser : Runner {
                 pular = true;
             }
         }
-
-
-
     }
 }

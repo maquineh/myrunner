@@ -5,24 +5,37 @@ public class PlataformaManager : MonoBehaviour {
 
 	public Transform prefab;
 	public int numeroDeParedes;
-	public Vector3 posicaoInicial;
-    public Vector3 proximaPosicao;
     public Vector3 minSize, maxSize, minGap, maxGap;
 	public float minY, maxY;
 	public float repetidorOffset;
-    	
+
+    public Vector3 posicaoInicial;
+    public Vector3 proximaPosicao;
 	private Queue<Transform> plataformas;
 	
 	void Start () {
-		plataformas = new Queue<Transform>(numeroDeParedes);
-		for (int i = 0; i < numeroDeParedes; i++) {
-			plataformas.Enqueue((Transform)Instantiate(prefab));
-		}
-		proximaPosicao = posicaoInicial;
-		for (int i = 0; i<numeroDeParedes; i++) {
-			Renovar();
-		}
+        ResetarFase();
 	}
+
+    public void ResetarFase() {
+        posicaoInicial = Vector3.zero;
+        proximaPosicao = Vector3.zero;
+        Runner.distanciaPercorrida = 0;
+        if (plataformas != null) {
+            while (plataformas.Count > 0) {
+                Transform t = plataformas.Dequeue();
+                Destroy(t.gameObject);
+            }
+        }
+        plataformas = new Queue<Transform>(numeroDeParedes);
+        for (int i = 0; i < numeroDeParedes; i++) {
+            plataformas.Enqueue((Transform)Instantiate(prefab));
+        }
+        proximaPosicao = posicaoInicial;
+        for (int i = 0; i < numeroDeParedes; i++) {
+            Renovar();
+        }
+    }
 	
 	void Update () {
 		if (plataformas.Peek().localPosition.x + repetidorOffset < Runner.distanciaPercorrida) {

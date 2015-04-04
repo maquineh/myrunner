@@ -4,40 +4,35 @@ using System.Collections;
 public class Director : MonoBehaviour {
 
     public Transform runner, chaser, plataformas;
-
 	public GUIText gameOverText;
-
 	public Canvas dialog;
 
 	private Runner runnerScript;
-
+    private Chaser chaserScript;
     private int score, tries;
 
     void Start() {
         score = 0;
-		tries = 1;
-		//StartGame ();
+		tries = 3;
 		GameManagersEvent.runGameStart();
 
 		gameOverText.enabled = false;
-		enabled = false;
 		dialog.enabled = false;
 
-		runnerScript = runner.GetComponent<Runner> ();
+        runnerScript = runner.GetComponent<Runner>();
+        chaserScript = chaser.GetComponent<Chaser>();
     }
 
-	void Update () {
+	void Update() {
         if (runner.transform.position.y <= -8.0f) {
 			tries--;
             ResetarRunner();
-
 			if(tries<1){
 				gameOver();
 			}
 
         }
-
-		if (chaser.transform.position.y <= -4.0f) {
+		if (chaser.transform.position.y <= -8.0f) {
             ResetarChaser();
         }
 	}
@@ -68,13 +63,23 @@ public class Director : MonoBehaviour {
 		gameOverText.enabled = true;
 		dialog.enabled = true;
 
-		runner.renderer.enabled = false;
-		runner.rigidbody.isKinematic = true;
-
-		chaser.renderer.enabled = false;
-		chaser.rigidbody.isKinematic = true;
-
-		runnerScript.velocidadePulo = Vector3.zero;
-		runnerScript.aceleracao = 0;
+        runner.gameObject.SetActive(false);
+        chaser.gameObject.SetActive(false);
+        runner.rigidbody.velocity = Vector3.zero;
+        chaser.rigidbody.velocity = Vector3.zero;
 	}
+
+    public void ResetGame() {
+        if (tries > 0) return;
+        gameOverText.enabled = false;
+        dialog.enabled = false;
+        score = 0;
+        tries = 3;
+        runner.gameObject.SetActive(true);
+        chaser.gameObject.SetActive(true);
+
+        plataformas.GetComponent<PlataformaManager>().ResetarFase();
+        runnerScript.reset();
+        chaserScript.reset();
+    }
 }

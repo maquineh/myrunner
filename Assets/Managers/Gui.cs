@@ -5,7 +5,6 @@ public class Gui : MonoBehaviour {
 
 	public GUIText GameOverText;
 	public Canvas dialog;
-	private Director director;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +25,6 @@ public class Gui : MonoBehaviour {
 		GameOverText.enabled = false;
 		enabled = false;
 		dialog.enabled = false;
-
 	}
 
 	private void GameOver () {
