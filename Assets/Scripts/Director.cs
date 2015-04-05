@@ -13,7 +13,7 @@ public class Director : MonoBehaviour {
 
     void Start() {
         score = 0;
-		tries = 3;
+		tries = 1;
 		GameManagersEvent.runGameStart();
 
 		gameOverText.enabled = false;
